@@ -1,8 +1,6 @@
 server:
   port: 4019
 security:
-  sessions: stateless
-security:
   basic:
     enabled: false
 spring:
@@ -13,6 +11,11 @@ spring:
     joda-date-time-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
     default-property-inclusion: non_null
+  data:
+    mongodb:
+      database: apihub
+      host: localhost
+      port: 27017
   http:
     multipart:
       max-file-size: 5000mb

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.OutputStream;
 
 /**
+ * 过滤器和拦截器指定输出模型
  * Created by zhouwenqi on 2018/6/5.
  */
 public class ResponseResult {
@@ -23,5 +24,4 @@ public class ResponseResult {
             e.printStackTrace();
         }
     }
-
 }

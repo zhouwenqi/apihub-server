@@ -5,6 +5,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.bson.types.ObjectId;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -26,7 +27,7 @@ public class jwtUtils {
     public static String encode(JwtUser user){
         Map<String,String> info = new HashMap<String, String>();
         info.put("userId",user.getId().toString());
-        info.put("userName",user.getUid());
+        info.put("uid",user.getUid());
         String subject = API_SUBJECT;
         Date expireDate = getExpireDate(7 * 24 * 60);
         return encode(info,subject,expireDate);
@@ -71,8 +72,8 @@ public class jwtUtils {
     public static JwtUser decodeUser(String token) throws Exception{
         Claims claims = decode(token);
         JwtUser user = new JwtUser();
-        user.setUid(claims.get("userName").toString());
-        user.setId(Long.parseLong(claims.get("userId").toString()));
+        user.setUid(claims.get("uid").toString());
+        user.setId(new ObjectId(claims.get("userId").toString()));
         return user;
     }
 

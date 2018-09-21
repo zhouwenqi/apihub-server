@@ -7,6 +7,8 @@ package com.zhouwenqi.apihub.server.model.response;
 public class ResultCode {
     // 请求成功
     public static int RESULT_SUCCESS = 200;
+    // 服务器错误
+    public static int RESULT_SERVICE_ERROR = 500;
     // 请求失败
     public static int RESULT_FAILED = 700;
     // 缺少参数

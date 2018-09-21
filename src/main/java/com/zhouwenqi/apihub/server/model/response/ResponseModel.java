@@ -43,6 +43,12 @@ public class ResponseModel implements Serializable {
     }
 
     /**
+     * 构造一个返回服务器错误的模型
+     * @return
+     */
+    public static ResponseModel getError(){return new ResponseModel(ResultCode.RESULT_SERVICE_ERROR,"服务器错误");}
+
+    /**
      * 构造一个返回失败的模型
      * @return
      */
