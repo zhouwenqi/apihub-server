@@ -1,0 +1,33 @@
+server:
+  port: 4019
+security:
+  sessions: stateless
+security:
+  basic:
+    enabled: false
+spring:
+  messages:
+    encoding: utf-8
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    joda-date-time-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_null
+  http:
+    multipart:
+      max-file-size: 5000mb
+      max-request-size: 10000mb
+      resolve-lazily: true
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${app.upload.path}
+
+app:
+  register:
+    status: true
+  smtp:
+    host: smtp.microwarp.com
+    port: 25
+    username: apihub@microwarp.com
+    password: Zwq#888888
+  upload:
+    path: d:/apihub
