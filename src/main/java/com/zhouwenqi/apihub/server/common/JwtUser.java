@@ -11,7 +11,7 @@ public class JwtUser implements Serializable {
     // 用户名
     private String uid;
     // 用户id
-    private ObjectId id;
+    private String id;
 
     public String getUid() {
         return uid;
@@ -21,11 +21,11 @@ public class JwtUser implements Serializable {
         this.uid = uid;
     }
 
-    public ObjectId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 }

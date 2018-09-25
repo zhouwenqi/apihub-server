@@ -73,7 +73,7 @@ public class jwtUtils {
         Claims claims = decode(token);
         JwtUser user = new JwtUser();
         user.setUid(claims.get("uid").toString());
-        user.setId(new ObjectId(claims.get("userId").toString()));
+        user.setId(claims.get("userId").toString());
         return user;
     }
 

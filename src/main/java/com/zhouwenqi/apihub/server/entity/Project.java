@@ -4,8 +4,10 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.zhouwenqi.apihub.server.common.IdGetSerialize;
 import com.zhouwenqi.apihub.server.common.IdSetSerialize;
+import com.zhouwenqi.apihub.server.model.HubStatus;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
@@ -22,6 +24,7 @@ public class Project implements Serializable {
     private ObjectId id;
 
     // 项目名称
+    @Indexed
     private String name;
 
     // 项目描述
@@ -31,9 +34,11 @@ public class Project implements Serializable {
     private String ico;
 
     // 项目状态
-    private Integer status;
+    @Indexed
+    private HubStatus status;
 
     // 创建人id
+    @Indexed
     private ObjectId userId;
 
     // 创建时间
@@ -76,11 +81,11 @@ public class Project implements Serializable {
         this.ico = ico;
     }
 
-    public Integer getStatus() {
+    public HubStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(HubStatus status) {
         this.status = status;
     }
 

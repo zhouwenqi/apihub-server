@@ -7,6 +7,7 @@ import com.zhouwenqi.apihub.server.common.IdSetSerialize;
 import com.zhouwenqi.apihub.server.model.RoleLevel;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
@@ -21,15 +22,18 @@ public class Member  implements Serializable {
     @Id
     private ObjectId id;
     // 项目id
+    @Indexed
     private ObjectId projectId;
 
     // 用户id
+    @Indexed
     private ObjectId userId;
 
     // 角色
     private RoleLevel roleLevel;
 
     // 积称
+    @Indexed
     private String memberName;
 
     // 创建时间

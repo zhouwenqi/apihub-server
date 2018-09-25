@@ -11,17 +11,17 @@ import org.springframework.web.context.request.RequestAttributes;
  * Created by zhouwenqi on 2018/6/5.
  */
 public class TokenController extends BaseController {
-    public Project getCurProject(){
-        return (Project)getContextAttribute().getAttribute("curProject", RequestAttributes.SCOPE_REQUEST);
+    public Project getHubProject(){
+        return (Project)getContextAttribute().getAttribute("hubProject", RequestAttributes.SCOPE_REQUEST);
     }
     public JwtUser getJwtUser(){
         return (JwtUser)getContextAttribute().getAttribute("jwtUser", RequestAttributes.SCOPE_REQUEST);
     }
-    public User getCurUser(){
-        return (User)getContextAttribute().getAttribute("curUser", RequestAttributes.SCOPE_REQUEST);
+    public User getHubUser(){
+        return (User)getContextAttribute().getAttribute("hubUser", RequestAttributes.SCOPE_REQUEST);
     }
-    public Member getCurMember(){
-        return (Member)getContextAttribute().getAttribute("curMember", RequestAttributes.SCOPE_REQUEST);
+    public Member getHubMember(){
+        return (Member)getContextAttribute().getAttribute("hubMember", RequestAttributes.SCOPE_REQUEST);
     }
 
 

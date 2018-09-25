@@ -6,8 +6,10 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.zhouwenqi.apihub.server.common.IdGetSerialize;
 import com.zhouwenqi.apihub.server.common.IdSetSerialize;
+import com.zhouwenqi.apihub.server.model.HubStatus;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
@@ -24,27 +26,33 @@ public class User implements Serializable{
     private ObjectId id;
 
     // 用户名
+    @Indexed
     private String uid;
 
     // 密码
     private String pwd;
 
     // 昵称
+    @Indexed
     private String nickName;
 
     // 头像
     private String photo;
 
     // 电子邮箱
+    @Indexed
     private String email;
 
     // 联系电话
+    @Indexed
     private String phone;
 
-    // (0:正常,1:临时禁用,2:永久禁用)
-    private Integer status;
+    // 用户状态
+    @Indexed
+    private HubStatus status;
 
     // 是否是系统管理员
+    @Indexed
     private Boolean isAdmin;
 
     // 创建时间
@@ -111,11 +119,11 @@ public class User implements Serializable{
         this.phone = phone;
     }
 
-    public Integer getStatus() {
+    public HubStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(HubStatus status) {
         this.status = status;
     }
 

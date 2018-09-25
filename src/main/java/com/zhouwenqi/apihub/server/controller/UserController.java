@@ -7,13 +7,16 @@ import com.zhouwenqi.apihub.server.model.RoleLevel;
 import com.zhouwenqi.apihub.server.model.response.ResponseModel;
 import com.zhouwenqi.apihub.server.service.MemberService;
 import com.zhouwenqi.apihub.server.service.UserService;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,9 +33,23 @@ public class UserController extends BaseController {
 
     @GetMapping("info")
     @ResponseBody
-    public ResponseModel info(){
+    public ResponseModel info() throws Exception{
         ResponseModel responseModel = ResponseModel.getSuccess();
-
+        List<User> users = new ArrayList<User>();
+        for(int i=0;i<5;i++){
+            User user = new User();
+            user.setUid("9069964@qq.com:["+i+"]");
+            user.setNickName("zhouwenqi");
+            user.setCreateDate(new Date());
+            user.setEditDate(new Date());
+            user.setPhone("18665111530");
+            user.setIsAdmin(false);
+            user.setPhoto("http://www.microwarp.com/api.jpg");
+            user.setPwd(DigestUtils.md5Hex(new String("123456").getBytes()).toLowerCase());
+            user.setEmail("9069964@qq.com");
+            users.add(user);
+        }
+        userService.insertAll(users);
         List<Member> list = memberService.findAll();
         responseModel.addData("list",list);
         return responseModel;

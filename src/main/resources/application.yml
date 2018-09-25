@@ -34,3 +34,6 @@ app:
     password: Zwq#888888
   upload:
     path: d:/apihub
+
+logging:
+  path: g:/home/apihub/service/logs
