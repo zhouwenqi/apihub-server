@@ -28,7 +28,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
     }
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(originInterceptor()).addPathPatterns("/**");
-        registry.addInterceptor(tokenInterceptor()).addPathPatterns("/my/**");
+        registry.addInterceptor(tokenInterceptor()).addPathPatterns("/my/**").addPathPatterns("/user/**").addPathPatterns("/project/**");
         registry.addInterceptor(accessInterceptor()).addPathPatterns("/project/**");
     }
 }

@@ -6,8 +6,6 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
  * Service - 成员
  * Created by zhouwenqi on 2018/9/21.

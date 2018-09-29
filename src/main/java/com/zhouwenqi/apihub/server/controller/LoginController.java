@@ -12,6 +12,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -24,6 +25,8 @@ public class LoginController extends BaseController {
     private UserService userService;
     @Autowired
     private MemberService memberService;
+    @Value("${app.user.login}")
+    private Boolean isLogin;
 
     private static Logger logger = LoggerFactory.getLogger(LoginController.class);
 
@@ -31,6 +34,12 @@ public class LoginController extends BaseController {
     @ResponseBody
     public ResponseModel login(ReqLogin reqLogin){
         ResponseModel responseModel = ResponseModel.getSuccess();
+        if(!isLogin){
+            responseModel = ResponseModel.getFailed();
+            responseModel.setMsg("登录通道已关闭");
+            logger.error("登录通道已关闭（开启配置:{app.user.login = true})");
+            return responseModel;
+        }
         // 校验参数
         if(null==reqLogin){
             responseModel = ResponseModel.getNotParameter();
