@@ -1,7 +1,5 @@
 package com.zhouwenqi.apihub.server.model;
 
-import com.zhouwenqi.apihub.server.service.UserService;
-
 /**
  * 用户状态
  *
@@ -9,8 +7,8 @@ import com.zhouwenqi.apihub.server.service.UserService;
  */
 public enum HubStatus {
     ON(0,"正常"),
-    LOCK(1,"暂时禁用"),
-    DISABLED(2,"永久禁用");
+    DISABLED(1,"暂时禁用"),
+    DELETE(2,"永久删除");
     final int index;
     final String value;
     HubStatus(int index,String value){

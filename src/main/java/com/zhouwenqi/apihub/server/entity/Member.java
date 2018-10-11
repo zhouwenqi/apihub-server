@@ -42,6 +42,9 @@ public class Member  implements Serializable {
     // 修改时间
     private Date editDate;
 
+    // 关联用户
+    private User user;
+
     @JsonSerialize(using = IdGetSerialize.class)
     public ObjectId getId() {
         return id;
@@ -102,5 +105,13 @@ public class Member  implements Serializable {
 
     public void setEditDate(Date editDate) {
         this.editDate = editDate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
