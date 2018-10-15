@@ -80,7 +80,7 @@ public class ProjectService extends BaseService<Project> {
         criteria.and("status").is(HubStatus.ON);
         List<AggregationOperation> operations = new ArrayList<>();
         operations.add(Aggregation.match(criteria));
-        operations.add(Aggregation.lookup("member","id","projectId","projectId"));
+        operations.add(Aggregation.lookup("member","id","projectId","member"));
         Aggregation aggregation = Aggregation.newAggregation(operations);
         AggregationResults<Project> results = mongoTemplate.aggregate(aggregation,"project",Project.class);
         List<Project> list = results.getMappedResults();
@@ -94,11 +94,13 @@ public class ProjectService extends BaseService<Project> {
      */
     public List<Project> findByAll(ObjectId userId){
         Criteria criteria = Criteria.where("userId").is(userId);
-        criteria.and("status").is(HubStatus.ON);
-        criteria.and("status").is(HubStatus.DISABLED);
+        List<HubStatus> statuses = new ArrayList<HubStatus>();
+        statuses.add(HubStatus.ON);
+        statuses.add(HubStatus.DISABLED);
+        criteria.and("status").in(statuses);
         List<AggregationOperation> operations = new ArrayList<>();
         operations.add(Aggregation.match(criteria));
-        operations.add(Aggregation.lookup("member","id","projectId","projectId"));
+        operations.add(Aggregation.lookup("member","id","projectId","member"));
         Aggregation aggregation = Aggregation.newAggregation(operations);
         AggregationResults<Project> results = mongoTemplate.aggregate(aggregation,"project",Project.class);
         List<Project> list = results.getMappedResults();

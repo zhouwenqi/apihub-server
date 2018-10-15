@@ -3,6 +3,8 @@ package com.zhouwenqi.apihub.server.controller;
 import com.zhouwenqi.apihub.server.base.TokenController;
 import com.zhouwenqi.apihub.server.entity.Project;
 import com.zhouwenqi.apihub.server.entity.User;
+import com.zhouwenqi.apihub.server.exception.FailedException;
+import com.zhouwenqi.apihub.server.exception.ParameterErrorException;
 import com.zhouwenqi.apihub.server.model.HubStatus;
 import com.zhouwenqi.apihub.server.model.ProjectRange;
 import com.zhouwenqi.apihub.server.model.RoleLevel;
@@ -81,6 +83,23 @@ public class UserController extends TokenController {
         }
         responseModel.addData("list",list);
         return  responseModel;
+    }
+
+    /**
+     * 获取项目信息
+     * @param id 项目id
+     * @return
+     */
+    @GetMapping("project")
+    @ResponseBody
+    public ResponseModel projectInfo(String id){
+        Project project = projectService.findById(id);
+        if(null == project){
+            throw new ParameterErrorException("项目不存在");
+        }
+        ResponseModel responseModel = ResponseModel.getSuccess();
+        responseModel.addData("project",project);
+        return responseModel;
     }
 
     /**
