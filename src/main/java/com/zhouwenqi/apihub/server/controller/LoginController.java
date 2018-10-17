@@ -45,13 +45,13 @@ public class LoginController extends BaseController {
             responseModel = ResponseModel.getNotParameter();
             return responseModel;
         }
-        if(StringUtils.isBlank(reqLogin.getUid()) || StringUtils.isBlank(reqLogin.getUid())){
+        if(StringUtils.isBlank(reqLogin.getUid()) || StringUtils.isBlank(reqLogin.getPwd())){
             responseModel = ResponseModel.getNotParameter();
             return responseModel;
         }
         // 获取用户信息
         User user = userService.findByUid(reqLogin.getUid());
-        if(null==user){
+        if(null == user){
             responseModel = ResponseModel.getFailed();
             responseModel.setMsg("登录帐号或密码错误");
             logger.error("登录帐号不存在:["+reqLogin.getUid()+"]");
